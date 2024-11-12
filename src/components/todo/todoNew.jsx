@@ -4,10 +4,25 @@ const TodoNew = (props) => {
   const { addNewTodo } = props;
 
   // addNewTodo("eric");
+  const hanldeClick = () => {
+    alert("click me");
+  };
+
+  const hanldeOnChange = (name) => {
+    console.log(">> hanldeOnChang", name);
+  };
+
   return (
     <div className="todo-new">
-      <input type="text" className="input" placeholder="Enter your task" />
-      <button className="submit">Add</button>
+      <input
+        type="text"
+        className="input"
+        placeholder="Enter your task"
+        onChange={(event) => hanldeOnChange(event.target.value)}
+      />
+      <button className="submit" onClick={hanldeClick}>
+        Add
+      </button>
     </div>
   );
 };
