@@ -62,18 +62,17 @@
 
 .todo-data {
   margin-top: 30px;
-  padding: 5px 15px;
+  padding: 20px 15px;
 
-  line-height: 30px;
   text-align: left;
   border: 1px solid #000;
-  border-radius: 5px;
+  border-radius: 15px;
 }
 
 .todo-item {
   display: flex;
   justify-content: space-between;
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
 .todo-image {
