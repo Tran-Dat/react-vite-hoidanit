@@ -1,6 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
+import LoginPage from "./pages/login.jsx";
+import RegisterPage from "./pages/login.jsx";
+import UsersPage from "./pages/users.jsx";
+import ProductPage from "./pages/products.jsx";
+import "./styles/global.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -11,19 +16,19 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <div>Login Page</div>,
+    element: <LoginPage />,
   },
   {
     path: "/register",
-    element: <div>Register Page</div>,
+    element: <RegisterPage />,
   },
   {
     path: "/users",
-    element: <div>Users Page</div>,
+    element: <UsersPage />,
   },
   {
-    path: "/product",
-    element: <div>Product Page</div>,
+    path: "/products",
+    element: <ProductPage />,
   },
 ]);
 
