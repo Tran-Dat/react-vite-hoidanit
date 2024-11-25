@@ -8,12 +8,14 @@ import ProductPage from "./pages/products.jsx";
 import "./styles/global.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import TodoApp from "./components/todo/todoApp.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
+      { index: true, element: <TodoApp /> },
       {
         path: "/users",
         element: <UsersPage />,
