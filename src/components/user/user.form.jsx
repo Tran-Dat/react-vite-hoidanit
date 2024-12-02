@@ -20,7 +20,7 @@ const UserForm = (props) => {
         description: "tao user thanh cong",
       });
       resetAndCloseModal();
-      loadUser();
+      await loadUser();
     } else {
       notification.error({
         message: "Error create user",
