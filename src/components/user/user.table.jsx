@@ -27,8 +27,8 @@ const UserTable = (props) => {
     {
       title: "STT",
       render: (_, record, index) => {
-        console.log(">>check index", index);
-        return <>{index + 1}</>;
+        // console.log(">>check index", index);
+        return <>{index + 1 + (current - 1) * pageSize}</>;
       },
     },
     {
@@ -100,6 +100,21 @@ const UserTable = (props) => {
   };
 
   const onChange = (pagination, filters, sorter, extra) => {
+    // setCurrent, setPageSize
+    // neu thay doi trang : current
+    // Meo: them dau "+" de convert kieu du lieu, VD: chuoi string "5" thi se thanh kieu number : 5
+    if (pagination && pagination.current) {
+      if (+pagination.current !== +current) {
+        setCurrent(+pagination.current);
+      }
+    }
+
+    // neu thay doi tong so phan tu : pageSize
+    if (pagination && pagination.pageSize) {
+      if (+pagination.pageSize !== +pageSize) {
+        setPageSize(+pagination.pageSize);
+      }
+    }
     console.log(">> check ", { pagination, filters, sorter, extra });
   };
 
