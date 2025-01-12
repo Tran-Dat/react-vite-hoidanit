@@ -1,4 +1,4 @@
-import { Button, Form, Input, notification } from "antd";
+import { Button, Form, Input, notification, Row, Col } from "antd";
 import { registerUserAPI } from "../services/api.services";
 import { useNavigate } from "react-router-dom";
 
@@ -35,89 +35,92 @@ const RegisterPage = () => {
       form={form}
       layout="vertical"
       onFinish={onFinish}
+      style={{ margin: "10px" }}
       // onFinishFailed={onFinishFailed}
     >
-      <div
-        style={{
-          margin: "50px",
-        }}
-      >
-        <Form.Item
-          label="Full Name"
-          name="fullName"
-          rules={[
-            {
-              required: true,
-              message: "Vui long nhap Ho va Ten!",
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-
-        <Form.Item
-          label="Email"
-          name="email"
-          rules={[
-            {
-              required: true,
-              message: "Vui long nhap Email!",
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-
-        <Form.Item
-          label="Password"
-          name="password"
-          rules={[
-            {
-              required: true,
-              message: "Vui long nhap Password",
-            },
-          ]}
-        >
-          <Input.Password />
-        </Form.Item>
-
-        <Form.Item
-          label="Phone number"
-          name="phone"
-          rules={[
-            {
-              // required: true,
-              pattern: new RegExp(/\d+/g),
-              message: "Wrong format!",
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-
-        <div>
-          <Button
-            onClick={() => {
-              form.submit();
-            }}
-            type="primary"
+      <Row justify={"center"}>
+        <Col xs={24} md={6}>
+          <Form.Item
+            label="Full Name"
+            name="fullName"
+            rules={[
+              {
+                required: true,
+                message: "Vui long nhap Ho va Ten!",
+              },
+            ]}
           >
-            Register
-          </Button>
+            <Input />
+          </Form.Item>
+        </Col>
+      </Row>
 
-          <Button
-            onClick={() => {
-              form.setFieldsValue({
-                email: "hoi dan it@gmail.com",
-                fullName: "eric",
-              });
-              console.log(">> check Form: ");
-            }}
+      <Row justify={"center"}>
+        <Col xs={24} md={6}>
+          <Form.Item
+            label="Email"
+            name="email"
+            rules={[
+              {
+                required: true,
+                message: "Vui long nhap Email!",
+              },
+            ]}
           >
-            Test
-          </Button>
-        </div>
-      </div>
+            <Input />
+          </Form.Item>
+        </Col>
+      </Row>
+
+      <Row justify={"center"}>
+        <Col xs={24} md={6}>
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: "Vui long nhap Password",
+              },
+            ]}
+          >
+            <Input.Password />
+          </Form.Item>
+        </Col>
+      </Row>
+
+      <Row justify={"center"}>
+        <Col xs={24} md={6}>
+          <Form.Item
+            label="Phone number"
+            name="phone"
+            rules={[
+              {
+                // required: true,
+                pattern: new RegExp(/\d+/g),
+                message: "Wrong format!",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+        </Col>
+      </Row>
+
+      <Row justify={"center"}>
+        <Col xs={24} md={6}>
+          <div>
+            <Button
+              onClick={() => {
+                form.submit();
+              }}
+              type="primary"
+            >
+              Register
+            </Button>
+          </div>
+        </Col>
+      </Row>
     </Form>
   );
 };
