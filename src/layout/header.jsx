@@ -35,7 +35,7 @@ const Header = () => {
       label: "Setting",
       key: "setting",
       icon: <SettingOutlined />,
-      Children: [
+      children: [
         {
           label: <Link to={"/login"}>Sign In</Link>,
           key: "login",
