@@ -6,10 +6,16 @@ import {
   SettingOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Children, useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../components/context/auth.context.jsx";
 
 const Header = () => {
   const [current, setCurrent] = useState("");
+
+  const { user } = useContext(AuthContext);
+
+  console.log(">>> check data: ", user);
+
   const onClick = (e) => {
     console.log("click ", e);
     setCurrent(e.key);
@@ -37,11 +43,11 @@ const Header = () => {
       icon: <SettingOutlined />,
       children: [
         {
-          label: <Link to={"/login"}>Sign In</Link>,
+          label: <Link to={"/login"}>Đăng nhập</Link>,
           key: "login",
         },
         {
-          label: "Exit",
+          label: "Đăng xuất",
           key: "logout",
         },
       ],
