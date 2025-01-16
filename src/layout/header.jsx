@@ -16,10 +16,7 @@ const Header = () => {
 
   const { user } = useContext(AuthContext);
 
-  console.log(">>> check data: ", user);
-
   const onClick = (e) => {
-    console.log("click ", e);
     setCurrent(e.key);
   };
 
@@ -48,7 +45,10 @@ const Header = () => {
             icon: <LoginOutlined />,
           },
         ]
-      : [
+      : []),
+
+    ...(user.id
+      ? [
           {
             label: `Welcome ${user.fullName}`,
             key: "setting",
@@ -60,7 +60,8 @@ const Header = () => {
               },
             ],
           },
-        ]),
+        ]
+      : []),
   ];
 
   return (
