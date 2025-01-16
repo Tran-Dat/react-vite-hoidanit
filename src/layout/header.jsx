@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { Menu } from "antd";
 import {
+  AliwangwangOutlined,
   BookOutlined,
   HomeTwoTone,
+  LoginOutlined,
   SettingOutlined,
   UserOutlined,
 } from "@ant-design/icons";
@@ -37,21 +39,28 @@ const Header = () => {
       key: "books",
       icon: <BookOutlined />,
     },
-    {
-      label: "Setting",
-      key: "setting",
-      icon: <SettingOutlined />,
-      children: [
-        {
-          label: <Link to={"/login"}>Đăng nhập</Link>,
-          key: "login",
-        },
-        {
-          label: "Đăng xuất",
-          key: "logout",
-        },
-      ],
-    },
+
+    ...(!user.id
+      ? [
+          {
+            label: <Link to={"/login"}>Đăng nhập</Link>,
+            key: "login",
+            icon: <LoginOutlined />,
+          },
+        ]
+      : [
+          {
+            label: `Welcome ${user.fullName}`,
+            key: "setting",
+            icon: <AliwangwangOutlined />,
+            children: [
+              {
+                label: "Đăng xuất",
+                key: "logout",
+              },
+            ],
+          },
+        ]),
   ];
 
   return (
