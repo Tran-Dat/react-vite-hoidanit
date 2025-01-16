@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
   const [form] = Form.useForm();
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const onFinish = async (values) => {
     // Call API
