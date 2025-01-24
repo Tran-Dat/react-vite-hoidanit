@@ -1,14 +1,12 @@
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { notification, Popconfirm, Table } from "antd";
-import UpdateUserModal from "./update.user.modal";
 import { useState } from "react";
-import ViewUserDetail from "./view.user.detail";
-import { deleteUserAPI } from "../../services/api.services";
+import { deleteBookAPI, deleteUserAPI } from "../../services/api.services";
 
-const UserTable = (props) => {
+const BookTable = (props) => {
   const {
-    dataUser,
-    loadUser,
+    dataBook,
+    loadBook,
     current,
     pageSize,
     total,
@@ -17,9 +15,7 @@ const UserTable = (props) => {
   } = props;
 
   const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
-
   const [dataUpdate, setDataUpdate] = useState(null);
-
   const [dataDetail, setDataDetail] = useState(null);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
 
@@ -48,12 +44,20 @@ const UserTable = (props) => {
       },
     },
     {
-      title: "full Name",
-      dataIndex: "fullName",
+      title: "Tiêu đề",
+      dataIndex: "mainText",
     },
     {
-      title: "Email",
-      dataIndex: "email",
+      title: "giá tiền",
+      dataIndex: "price",
+    },
+    {
+      title: "Số lượng",
+      dataIndex: "quantity",
+    },
+    {
+      title: "tác giả",
+      dataIndex: "author",
     },
     {
       title: "Action",
@@ -70,7 +74,7 @@ const UserTable = (props) => {
           <Popconfirm
             title="Delete User"
             description="Are you sure to delete this user?"
-            onConfirm={() => handleDeteleUser(record._id)}
+            onConfirm={() => handleDeteleBook(record._id)}
             okText="Yes"
             cancelText="No"
             placement="left"
@@ -81,22 +85,6 @@ const UserTable = (props) => {
       ),
     },
   ];
-
-  const handleDeteleUser = async (id) => {
-    const res = await deleteUserAPI(id);
-    if (res.data) {
-      notification.success({
-        message: "Delete User",
-        description: "xoa user thanh cong",
-      });
-      await loadUser();
-    } else {
-      notification.error({
-        message: "Erro Delete User",
-        description: JSON.stringify(res.message),
-      });
-    }
-  };
 
   const onChange = (pagination, filters, sorter, extra) => {
     // setCurrent, setPageSize
@@ -116,46 +104,44 @@ const UserTable = (props) => {
     }
   };
 
+  const handleDeteleBook = async (id) => {
+    const res = await deleteBookAPI(id);
+    if (res.data) {
+      notification.success({
+        message: "Delete User",
+        description: "xoa user thanh cong",
+      });
+      await loadBook();
+    } else {
+      notification.error({
+        message: "Erro Delete User",
+        description: JSON.stringify(res.message),
+      });
+    }
+  };
+
   return (
-    <>
-      <Table
-        columns={columns}
-        dataSource={dataUser}
-        rowKey={"_id"}
-        pagination={{
-          current: current,
-          pageSize: pageSize,
-          showSizeChanger: true,
-          total: total,
-          showTotal: (total, range) => {
-            return (
-              <div>
-                {" "}
-                {range[0]}-{range[1]} trên {total} rows
-              </div>
-            );
-          },
-        }}
-        onChange={onChange}
-      />
-
-      <UpdateUserModal
-        isModalUpdateOpen={isModalUpdateOpen}
-        setIsModalUpdateOpen={setIsModalUpdateOpen}
-        dataUpdate={dataUpdate}
-        setDataUpdate={setDataUpdate}
-        loadUser={loadUser}
-      />
-
-      <ViewUserDetail
-        dataDetail={dataDetail}
-        setDataDetail={setDataDetail}
-        isDetailOpen={isDetailOpen}
-        setIsDetailOpen={setIsDetailOpen}
-        loadUser={loadUser}
-      />
-    </>
+    <Table
+      columns={columns}
+      dataSource={dataBook}
+      rowKey={"_id"}
+      pagination={{
+        current: current,
+        pageSize: pageSize,
+        showSizeChanger: true,
+        total: total,
+        showTotal: (total, range) => {
+          return (
+            <div>
+              {" "}
+              {range[0]}-{range[1]} trên {total} rows
+            </div>
+          );
+        },
+      }}
+      onChange={onChange}
+    />
   );
 };
 
-export default UserTable;
+export default BookTable;

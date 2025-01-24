@@ -3,14 +3,14 @@ import App from "./App.jsx";
 import LoginPage from "./pages/login.jsx";
 import RegisterPage from "./pages/register.jsx";
 import UsersPage from "./pages/users.jsx";
-import BookPage from "./pages/books.jsx";
 import "./styles/global.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import TodoApp from "./components/todo/todoApp.jsx";
 import ErrorPage from "./pages/error.jsx";
 import { AuthWrapper } from "./components/context/auth.context.jsx";
-import PrivateRoutes from "./pages/private.routes.jsx";
+import PrivateRoute from "./pages/private.routes.jsx";
+import BookPage from "./pages/books.jsx";
 
 const router = createBrowserRouter([
   {
@@ -26,9 +26,9 @@ const router = createBrowserRouter([
       {
         path: "/books",
         element: (
-          <PrivateRoutes>
+          <PrivateRoute>
             <BookPage />
-          </PrivateRoutes>
+          </PrivateRoute>
         ),
       },
     ],
